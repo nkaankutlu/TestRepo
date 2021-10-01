@@ -11,6 +11,10 @@ DGE.analysis <- function(rawdata, group1, group2, method){
   df <- data
   
   ####creating a DGElist for manipulation and normalization of the count values data####
+  ####creating a DGElist for manipulation and normalization of the count values data####
+  ####creating a DGElist for manipulation and normalization of the count values data####
+  ####creating a DGElist for manipulation and normalization of the count values data####
+  ####creating a DGElist for manipulation and normalization of the count values data####
   
   group <- factor(c(group1, group2))
   y <- DGEList(as.matrix(data), group = group)
