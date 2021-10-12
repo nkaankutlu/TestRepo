@@ -1,9 +1,9 @@
 # README
 
-This script consists of 3 functions: **Normalization**, **Biomart query creation** and **Gene enrichment analysis**
+This project consists of 3 functions for gene enrichment analysis with NGS datasets: **Normalization**, **Biomart query creation** and **Gene enrichment analysis** 
 
 ## Normalization
-Data manipulation function requires a raw counts data with 2 groups to work with, these groups can be different conditions with different number of samples. The default normalization method is 'TMM', however it can be changed as a parameter as well to TMMwsp, RLE or upperquartile as a variable. The normalization and data manipulation function gives a quasilike log lineer model for statistical result table as a result to detect differences between conditions.
+Raw data at the beginning at the pipeline needs to be counts.values dat in csv or tsv format with count numbers for ENSEMBL gene_id for every sample. Data manipulation function requires 2 groups to work with, these groups can be different conditions with different number of samples. The default normalization method is 'TMM', however it can be changed as a parameter as well to TMMwsp, RLE or upperquartile as a variable. The normalization and data manipulation function gives a quasilike log lineer model for statistical result table as a result to detect differences between conditions.
 
 *Before starting the second function the ensembl_gene_id of the result table must be created as a data frame since it will be required in the gene enrichment analysis.*
 
