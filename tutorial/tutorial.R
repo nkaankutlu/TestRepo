@@ -1,4 +1,4 @@
-source("Documents/TestRepo/miniproject.R")
+source("/TestRepo/project/enrichment.of.normalized.counts.R")
 
 
 #raw counts data for data normalization and statistical calculations, it should include ensembl gene_id as the first column and count values of the samples in the other columns 
