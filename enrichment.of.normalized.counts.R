@@ -5,13 +5,12 @@ library("org.Mm.eg.db")
 library("tibble")
 library("dplyr")
 
-
-DGE.analysis <- function(rawdata, group1, group2, method){
+DGE.analysis <- function(rawdata, group1, group2){
   
   df <- data
   
   ####creating a DGElist for manipulation and normalization of the count values data####
-    
+
   group <- factor(c(group1, group2))
   y <- DGEList(as.matrix(data), group = group)
   keep <- rowSums(cpm(y) > 1) >= 2
@@ -29,17 +28,6 @@ DGE.analysis <- function(rawdata, group1, group2, method){
   df.qlf <-rownames_to_column(qlf$table, "ensembl_gene_id_version")
   return(qlf)
 }
-
-data <- read.csv("Documents/Alotaibi-RNAseq-Histone-Variant-09.09.2021/Rawdata/H2afv.counts.csv",
-                 header = T,
-                 row.names = 1)
-
-group1 <- rep("H2afv",2)
-group2 <- rep("Scr", 2)
-method <- "TMM"
-df <- DGE.analysis(data, group1 , group2, method)
-df2 <- rownames_to_column(df$table, "ensembl_gene_id_version")
-
 
 mart.func <- function(df2, dataset){
   ####finding the gene IDs of significantly meaningful regulated genes####
@@ -60,10 +48,6 @@ mart.func <- function(df2, dataset){
               mart = mart)
    return(BM)
 }
-
-dataset <- "mmusculus_gene_ensembl"
-df3 <- mart.func(df2, dataset)
-
 
 go.func <- function(df, df2, df3, number, p, organism){
   
@@ -87,15 +71,3 @@ go.func <- function(df, df2, df3, number, p, organism){
  
   return(GOenrich)
 }
-
-number <- Inf
-p <- 0.05
-organism <- "org.Mm.eg.db"
-
-df4 <- go.func(df,df2,df3,number,p,organism)
-
-dotplot(df4,
-        showCategory = 25,
-        font.size = 10,
-        title = "Dotplot of Enriched Pathways"
-)
